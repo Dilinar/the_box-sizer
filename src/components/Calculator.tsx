@@ -54,8 +54,6 @@ export function Calculator({ maxSum, maxLength }: Props) {
         }   
     }
 
-    console.log(`${maxSum} i ${maxLength} w calculator`);
-
     return (
         <div className="app">
             <div className={classes.slider}>
