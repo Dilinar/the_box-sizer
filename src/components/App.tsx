@@ -29,7 +29,6 @@ export function App() {
         setDrawerOpen(true);
     }
 
-    console.log(`${maxSum} i ${maxLength} w App`);
     return (
         <>
             <h1>THE BOX-SIZER</h1>

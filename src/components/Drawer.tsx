@@ -47,6 +47,9 @@ export function SetupDrawer({ show, defaultMaxSum, defaultMaxLength, onMaxDimens
 
     function onSubmit (e: React.FormEvent) {
         e.preventDefault();
+        if (maxSum === NaN || maxLength === NaN) {
+            alert ("Value fields can not be left empty")
+        }
 
         onMaxDimensionsChange(maxSum, maxLength);
     }
