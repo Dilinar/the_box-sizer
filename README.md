@@ -1,6 +1,6 @@
 # The Box-Sizer
 
-Link to project: https://dilinar.github.io/the-box-sizer/
+Link to project: https://dilinar.github.io/the_box-sizer/
 
 When my little yarn shop grew, more orders came in. Not excluding wholesale orders. 
 
