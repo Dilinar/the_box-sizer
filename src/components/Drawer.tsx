@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
     },
     drawer: {
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        height: '25vh'
     },
     content: {
         display: 'flex',
@@ -25,10 +26,16 @@ const useStyles = makeStyles((theme) => ({
     },
     form: {
         marginTop: theme.spacing(2),
-        display: 'flex'
+        display: 'flex',
+        flexDirection: 'column'
     },
     input: {
         marginRight: theme.spacing(1)
+    },
+    buttonContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: theme.spacing(2)
     }
 }));
 
@@ -44,21 +51,31 @@ export function SetupDrawer({ show, defaultMaxSum, defaultMaxLength, onMaxDimens
 
     const [ maxSum, setMaxSum ] = useState(defaultMaxSum);
     const [ maxLength, setMaxLength ] = useState(defaultMaxLength);
+    const [ mySumError, setMySumError ] = useState('');
+    const [ myLengthError, setMyLengthError ] = useState('')
 
     function onSubmit (e: React.FormEvent) {
         e.preventDefault();
         if (isNaN(maxSum) || isNaN(maxLength)) {
-            alert ("Value fields can not be left empty")
              
             return
         }
 
         onMaxDimensionsChange(maxSum, maxLength);
     }
-    console.log(`${maxSum} i ${maxLength} w drawer`);
     
     function onMaxSumChange (e: React.ChangeEvent<HTMLInputElement>) {
         const value = parseInt(e.target.value, 10);
+
+        if(isNaN(value)) {
+            setMySumError("Field required.")
+            setMyLengthError("Field required.")
+        }
+        else setMySumError('');
+
+        if(value) {
+            setMyLengthError('');
+        }
 
         setMaxSum(Math.max(value, 0));
         setMaxLength(Math.floor(value / 2));
@@ -72,6 +89,10 @@ export function SetupDrawer({ show, defaultMaxSum, defaultMaxLength, onMaxDimens
 
             return setMaxLength(maxSum - 4);
         }
+        if(isNaN(value)) {
+            setMyLengthError("Field required.")
+        }
+        else setMyLengthError('')
 
         setMaxLength(Math.max(value, 0));
     }
@@ -85,6 +106,7 @@ export function SetupDrawer({ show, defaultMaxSum, defaultMaxLength, onMaxDimens
                             Before you go further, please enter the maximal sum of length and the circumference measured perpendicular to the length and the maximal length allowed by the courier of your choice.
                         </span>
                         <form className={classes.form} onSubmit={onSubmit}>
+                            <div>
                             <TextField
                                 label="max sum"
                                 type="number"
@@ -92,6 +114,8 @@ export function SetupDrawer({ show, defaultMaxSum, defaultMaxLength, onMaxDimens
                                 value={maxSum}
                                 className={classes.input}
                                 InputProps={{ inputProps: { min: 1 } }}
+                                error={!!mySumError}
+                                helperText={mySumError}
                                 onChange={onMaxSumChange}
                             />
                             <TextField
@@ -101,14 +125,28 @@ export function SetupDrawer({ show, defaultMaxSum, defaultMaxLength, onMaxDimens
                                 value={maxLength}
                                 className={classes.input}
                                 InputProps={{ inputProps: { min: 1 } }}
+                                error={!!myLengthError}
+                                helperText={myLengthError}
                                 onChange={onMaxLengthChange}
                             />
-                            <Button 
-                                type="submit" 
-                                variant="contained" 
-                                color="primary">
-                                Save
-                            </Button>
+                            </div>
+                            <div className={classes.buttonContainer}>
+                            {isNaN(maxSum) || isNaN(maxLength) || maxSum < 1 || maxLength < 1?
+                                <Button
+                                    disabled
+                                    type="submit" 
+                                    variant="contained" 
+                                    color="primary">
+                                    Save
+                                </Button> :
+                                <Button 
+                                    type="submit" 
+                                    variant="contained" 
+                                    color="primary">
+                                    Save
+                                </Button>
+                            }
+                            </div>
                         </form>
                     </div>
                 </Drawer>
