@@ -38,10 +38,5 @@ module.exports = {
                 { from: './src/style.css', to: './' }
             ]
         })
-    ],
-    performance: {
-        // hints: 'error',
-        // maxEntrypointSize: 512000000,
-        // maxAssetSize: 51200000000
-    }
+    ]
 };
