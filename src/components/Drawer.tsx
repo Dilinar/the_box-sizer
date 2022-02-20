@@ -52,13 +52,13 @@ export function SetupDrawer({ show, defaultMaxSum, defaultMaxLength, onMaxDimens
     const [ maxSum, setMaxSum ] = useState(defaultMaxSum);
     const [ maxLength, setMaxLength ] = useState(defaultMaxLength);
     const [ mySumError, setMySumError ] = useState('');
-    const [ myLengthError, setMyLengthError ] = useState('')
+    const [ myLengthError, setMyLengthError ] = useState('');
 
     function onSubmit (e: React.FormEvent) {
         e.preventDefault();
         if (isNaN(maxSum) || isNaN(maxLength)) {
              
-            return
+            return;
         }
 
         onMaxDimensionsChange(maxSum, maxLength);
@@ -68,8 +68,8 @@ export function SetupDrawer({ show, defaultMaxSum, defaultMaxLength, onMaxDimens
         const value = parseInt(e.target.value, 10);
 
         if(isNaN(value)) {
-            setMySumError("Field required.")
-            setMyLengthError("Field required.")
+            setMySumError("Field required.");
+            setMyLengthError("Field required.");
         }
         else setMySumError('');
 
@@ -90,9 +90,9 @@ export function SetupDrawer({ show, defaultMaxSum, defaultMaxLength, onMaxDimens
             return setMaxLength(maxSum - 4);
         }
         if(isNaN(value)) {
-            setMyLengthError("Field required.")
+            setMyLengthError("Field required.");
         }
-        else setMyLengthError('')
+        else setMyLengthError('');
 
         setMaxLength(Math.max(value, 0));
     }
@@ -107,45 +107,45 @@ export function SetupDrawer({ show, defaultMaxSum, defaultMaxLength, onMaxDimens
                         </span>
                         <form className={classes.form} onSubmit={onSubmit}>
                             <div>
-                            <TextField
-                                label="max sum"
-                                type="number"
-                                variant="outlined"
-                                value={maxSum}
-                                className={classes.input}
-                                InputProps={{ inputProps: { min: 1 } }}
-                                error={!!mySumError}
-                                helperText={mySumError}
-                                onChange={onMaxSumChange}
-                            />
-                            <TextField
-                                label="max length"
-                                type="number"
-                                variant="outlined"
-                                value={maxLength}
-                                className={classes.input}
-                                InputProps={{ inputProps: { min: 1 } }}
-                                error={!!myLengthError}
-                                helperText={myLengthError}
-                                onChange={onMaxLengthChange}
-                            />
+                                <TextField
+                                    label="max sum"
+                                    type="number"
+                                    variant="outlined"
+                                    value={maxSum}
+                                    className={classes.input}
+                                    InputProps={{ inputProps: { min: 1 } }}
+                                    error={!!mySumError}
+                                    helperText={mySumError}
+                                    onChange={onMaxSumChange}
+                                />
+                                <TextField
+                                    label="max length"
+                                    type="number"
+                                    variant="outlined"
+                                    value={maxLength}
+                                    className={classes.input}
+                                    InputProps={{ inputProps: { min: 1 } }}
+                                    error={!!myLengthError}
+                                    helperText={myLengthError}
+                                    onChange={onMaxLengthChange}
+                                />
                             </div>
                             <div className={classes.buttonContainer}>
-                            {isNaN(maxSum) || isNaN(maxLength) || maxSum < 1 || maxLength < 1?
-                                <Button
-                                    disabled
-                                    type="submit" 
-                                    variant="contained" 
-                                    color="primary">
-                                    Save
-                                </Button> :
-                                <Button 
-                                    type="submit" 
-                                    variant="contained" 
-                                    color="primary">
-                                    Save
-                                </Button>
-                            }
+                                {isNaN(maxSum) || isNaN(maxLength) || maxSum < 1 || maxLength < 1?
+                                    <Button
+                                        disabled
+                                        type="submit" 
+                                        variant="contained" 
+                                        color="primary">
+                                        Save
+                                    </Button> :
+                                    <Button 
+                                        type="submit" 
+                                        variant="contained" 
+                                        color="primary">
+                                        Save
+                                    </Button>
+                                }
                             </div>
                         </form>
                     </div>
