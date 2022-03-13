@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires, no-undef */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -20,7 +21,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|ts|tsx)$/,
-                exclude: [ /node_modules/],
+                exclude: [ /node_modules/ ],
                 use: [
                     { loader:'ts-loader' }
                 ]

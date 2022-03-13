@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import Button from '@material-ui/core/Button';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import { 
+    Button,
+    makeStyles 
+} from '@material-ui/core';
 
-import Calculator from './Calculator';
-import SetupDrawer from './Drawer';
+import Calculator from '../Calculator/Calculator';
+import SetupDrawer from '../Drawer/Drawer';
 
 const useStyles = makeStyles((theme) => ({
     drawerButton: {
