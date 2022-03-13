@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import Slider from '@material-ui/core/Slider';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import { 
+    Slider,
+    makeStyles
+} from '@material-ui/core';
 
 const useStyles = makeStyles({
     slider: {

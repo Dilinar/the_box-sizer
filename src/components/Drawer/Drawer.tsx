@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
-import Backdrop from '@material-ui/core/Backdrop';
-import TextField from '@material-ui/core/TextField';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import { 
+    Drawer,
+    Button,
+    Backdrop,
+    TextField,
+    makeStyles
+} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     backdrop: {
